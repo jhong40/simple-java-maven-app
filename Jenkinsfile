@@ -12,8 +12,7 @@ pipeline {
 
         stage('Sanity check') {
             steps {
-                ##################################################################3
-                input "Does the staging environment look ok?"   ##### ask user input
+                input "Does the staging environment look ok?"  
             }
         }
 
