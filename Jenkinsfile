@@ -1,16 +1,25 @@
 pipeline {
     agent any
     stages {
-        stage('Example') {
-            steps {
-                echo 'Hello World'
+        /* "Build" and "Test" stages omitted */
 
-                script {
-                    def browsers = ['chrome', 'firefox']
-                    for (int i = 0; i < browsers.size(); ++i) {
-                        echo "Testing the ${browsers[i]} browser"
-                    }
-                }
+        stage('Deploy - Staging') {
+            steps {
+                sh './deploy staging'
+                sh './run-smoke-tests'
+            }
+        }
+
+        stage('Sanity check') {
+            steps {
+                ##################################################################3
+                input "Does the staging environment look ok?"   ##### ask user input
+            }
+        }
+
+        stage('Deploy - Production') {
+            steps {
+                sh './deploy production'
             }
         }
     }
