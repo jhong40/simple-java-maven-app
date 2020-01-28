@@ -1,5 +1,5 @@
 pipeline {
-    options { timestamps() }
+    options { timestamps() }  //adding timestamp
     agent {
         docker {
             image 'maven:3-alpine'
